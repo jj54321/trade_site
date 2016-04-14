@@ -1,0 +1,29 @@
+<%= form_for [@user, @newsletter] do |f| %>
+
+
+<h2>Add a trade</h2>
+
+  <%= f.fields_for :trades do |trade_builder| %>
+    <%= trade_builder.label :instrument %>
+    <%= trade_builder.text_field :instrument %><br>
+
+    <%= trade_builder.label :entry %>    
+
+    <%= trade_builder.text_field :entry %><br>
+
+    <%= trade_builder.label :stop %>
+    <%= trade_builder.text_field :stop %><br>
+
+    <%= trade_builder.label :take_profit %>
+    <%= trade_builder.text_field :take_profit %><br>
+
+    Long: <%= trade_builder.radio_button("direction", "long") %>
+    Short: <%= trade_builder.radio_button("direction", "short") %>
+
+    Close the position?: <%= trade_builder.check_box :closed %>
+
+
+  <% end %>
+<%= f.submit "Create Trade" %>
+
+<% end %>

@@ -1,27 +1,15 @@
 <%= form_for [@user, @newsletter] do |f| %>
+<div class="newsletter_attribute">
+
   <%= f.label :title %>
   <%= f.text_field :title %><br>
 
   <%= f.label :content %>
-  <%= f.text_field :content %><br>
 
-  <%= f.fields_for :trades do |trade_builder| %>
-    <%= trade_builder.label :instrument %>
-    <%= trade_builder.text_field :instrument %><br>
+  <%= f.text_area :content, :cols => 100, :rows => 10 %><br>
+</div>
 
-    <%= trade_builder.label :entry %>
-    <%= trade_builder.text_field :entry %><br>
 
-    <%= trade_builder.label :stop %>
-    <%= trade_builder.text_field :stop %><br>
-
-    <%= trade_builder.label :take_profit %>
-    <%= trade_builder.text_field :take_profit %><br>
-
-    <!-- To Do : Switch Direction to Binary choice -->
-    <%= trade_builder.label :direction %>
-    <%= trade_builder.text_field :direction %><br>
-  <% end %>
 
   <%= f.submit %>
 <% end %>

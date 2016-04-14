@@ -1,10 +1,10 @@
-<h1>List all the newsletters authored by the User</h1>
-
-<h2>To do: When visitors access this page they should see the newsletters but not be able to edit etc</h2>
+<h1>Newsletters by: <strong><%= @user.full_name  %></strong></h1>
+<h2>Track record accuracy:</h2>
+<h2> <%= @user.accuracy %></h2>
 <% @newsletters.each do |newsletter| %>
   <%= newsletter.title %>
-  <%= link_to "View Newsletter", user_newsletter_path(newsletter.user_id, newsletter.id) %>
+  <%= link_to "View Newsletter", user_newsletter_path(newsletter.user_id, newsletter.id) %><br>
 <% end %>
-<% if current_user == @user %>
+<% if current_user %>
   <%= link_to "Add Newsletter", new_user_newsletter_path  %>
 <% end %>

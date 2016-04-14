@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users, :path => 'accounts'
-
+  devise_for :users, :path => 'accounts', :controllers => { registrations: 'registrations' }
   resources :users, only: [:show] do
       resources :newsletters
   end
   root to: "visitors#index"
+
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

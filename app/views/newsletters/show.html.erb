@@ -1,8 +1,50 @@
-<%= @newsletter.title %>
-<%= @newsletter.content %>
-<%= @newsletter.created_at %>
+<h1><%= @newsletter.title %></h1><h3>Written by:<%= @newsletter.user.full_name %><br>
+Date: <%= date_created(@newsletter) %> Time: <%= time_created(@newsletter) %></h3><br>
+<p>
+  <%= @newsletter.content %>
+</p>
 
-<% if current_user.id == @newsletter.user_id %>
-  <%= link_to "Edit", edit_user_newsletter_path %>
-  <%= link_to "Delete", [@user, @newsletter], :method => :delete, :confirm => "Are you sure ?"%>
+
+<h2>Trade Calls</h2>
+<% if @newsletter.open_positions? %>
+  <h3>Open Trades</h3>
+
+
+  <% @newsletter.trades.open_trades.each do |trade| %>
+
+   <li>
+     <strong>Instrument: <%= trade.instrument  %></strong> <br>
+     <strong>Date Created : <%= date_created(trade)   %> Time: <%= time_created(trade) %></strong> <br>
+     Direction: <%= trade.direction  %> <br>
+     Entry: <%= trade.entry  %> <br>
+     Stop: <%= trade.stop  %> <br>
+     Take Profit: <%= trade.take_profit  %> <br>
+
+
+   </li>
+  <% end %>
+<% end %>
+<% if @newsletter.closed_positions? %>
+<h3>Closed Trades</h3>
+  <% @newsletter.trades.closed_trades.each do |trade| %>
+
+   <li>
+     <strong>Instrument: <%= trade.instrument  %></strong> <br>
+     <strong>Date Created : <%= date_created(trade)   %> Time: <%= time_created(trade) %></strong> <br>
+     Direction: <%= trade.direction  %> <br>
+     Entry: <%= trade.entry  %> <br>
+     Stop: <%= trade.stop  %> <br>
+     Take Profit: <%= trade.take_profit  %> <br>
+
+   </li>
+  <% end %>
+<% end %>
+
+
+
+
+<% if owner? %>
+  <%= render "trade_form" %>
+  <%= link_to "Edit Newsletter", edit_user_newsletter_path %>
+  <%= link_to "Delete Newsletter", [@user, @newsletter], :method => :delete, :confirm => "Are you sure ?"%>
 <% end %>
