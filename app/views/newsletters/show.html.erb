@@ -1,0 +1,8 @@
+<%= @newsletter.title %>
+<%= @newsletter.content %>
+<%= @newsletter.created_at %>
+
+<% if current_user.id == @newsletter.user_id %>
+  <%= link_to "Edit", edit_user_newsletter_path %>
+  <%= link_to "Delete", [@user, @newsletter], :method => :delete, :confirm => "Are you sure ?"%>
+<% end %>
