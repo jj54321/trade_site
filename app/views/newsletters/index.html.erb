@@ -1,6 +1,7 @@
 <h1>Newsletters by: <strong><%= @user.full_name  %></strong></h1>
 <h2>Track record accuracy:</h2>
 <h2> <%= @user.accuracy %></h2>
+
 <% @newsletters.each do |newsletter| %>
   <%= newsletter.title %>
   <%= link_to "View Newsletter", user_newsletter_path(newsletter.user_id, newsletter.id) %><br>

@@ -22,10 +22,10 @@ class User < ActiveRecord::Base
   end
 
   def accuracy
-    if self.trades.count == 0
+    if self.trades.closed_trades.count == 0
       return "This Trader does not have a track record yet"
     else
-      ((self.trades.closed_trades.count/self.trades.count) * 100).to_s + "%"
+      ((self.trades.closed_trades.profitable_trades.count.to_f/self.trades.closed_trades.count) * 100).to_s + "%"
     end
   end
 

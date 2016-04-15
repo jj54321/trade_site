@@ -1,8 +1,8 @@
-<%= @users.each do |user|  %>
+<% @users.each do |user|  %>
   <h1><%= user.full_name %> : Historical Accuracy: <%= user.accuracy %></h1>
   <h2>Newsletters:</h2>
-  <!-- <% user.newsletters.each do |newsletter| %>
-    <li><a href="/users/<%= user.id %>/newsletters/<%= newsletter.id %>"><%= newsletter.title %></li>
+  <% user.newsletters.each do |newsletter| %>
+    <li><a href="/users/<%= user.id %>/newsletters/<%= newsletter.id %>"><%= newsletter.title %></a></li>
   <% end %>
 
-<% end %> -->
+<% end %>

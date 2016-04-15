@@ -2,7 +2,7 @@ class NewslettersController < ApplicationController
 
   def index
     finder
-   @newsletters = @user.newsletters.all
+   @newsletters = @user.newsletters
   end
 
   def new
@@ -25,6 +25,7 @@ class NewslettersController < ApplicationController
     finder
     @newsletter.trades.build(user_id: @user.id, newsletter_id: @newsletter.id)
     flash[:error]= @newsletter.errors.full_messages.to_sentence
+    # redirect_to user_newsletters_path(@newsletter)
   end
 
   def destroy
@@ -55,7 +56,8 @@ class NewslettersController < ApplicationController
   end
 
   def newsletter_params
-    params.require(:newsletter).permit(:title, :content, :trades_attributes => [:id, :instrument,:entry, :stop, :take_profit, :direction])
+    params.require(:newsletter).permit(:title, :content,
+     :trades_attributes => [:id, :instrument,:entry, :stop, :take_profit, :direction, :closed, :profitable])
   end
 
   def owner?

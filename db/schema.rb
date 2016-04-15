@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 20160414221654) do
     t.float    "entry"
     t.float    "stop"
     t.float    "take_profit"
-    t.string   "result"
     t.string   "instrument"
     t.string   "direction"
     t.integer  "user_id"
@@ -33,6 +32,7 @@ ActiveRecord::Schema.define(version: 20160414221654) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.boolean  "closed",        default: false
+    t.boolean  "profitable",    default: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -11,6 +11,7 @@ module ApplicationHelper
   def authenticate?
     if user_signed_in?
       if owner?
+        return true
       end
     end
   end
