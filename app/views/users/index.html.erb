@@ -1,0 +1,9 @@
+<%= @users.each do |user|  %>
+  <h1><%= user.full_name %> : Historical Accuracy: <%= user.accuracy %></h1>
+  <h2>Newsletters:</h2>
+  <% user.newsletters.each do |newsletter| %>
+    <li><%= link_to newsletter.title, user_newsletter_path(user, newsletter) %></li>
+
+  <% end %>
+
+<% end %>

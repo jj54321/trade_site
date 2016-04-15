@@ -16,13 +16,15 @@ class NewslettersController < ApplicationController
     if @newsletter.save
       redirect_to user_newsletter_path(current_user, @newsletter)
     else
-      render '/new'
+      flash[:error]= @newsletter.errors.full_messages.to_sentence
+      redirect_to new_user_newsletter_path
     end
   end
 
   def show
     finder
     @newsletter.trades.build(user_id: @user.id, newsletter_id: @newsletter.id)
+    flash[:error]= @newsletter.errors.full_messages.to_sentence
   end
 
   def destroy
@@ -37,8 +39,12 @@ class NewslettersController < ApplicationController
 
   def update
     finder
-    @newsletter.update(newsletter_params)
-    redirect_to user_newsletters_path(@user, @newsletter)
+    if @newsletter.update(newsletter_params)
+      redirect_to user_newsletters_path(@user, @newsletter)
+    else
+      flash[:error]= @newsletter.errors.full_messages.to_sentence
+      redirect_to edit_user_newsletter_path
+    end
   end
 
   private
@@ -53,6 +59,10 @@ class NewslettersController < ApplicationController
   end
 
   def owner?
-    current_user.id == @newsletter.user_id
+    if user_signed_in?
+      current_user.id == @newsletter.user_id
+    else
+      false
+    end
   end
 end

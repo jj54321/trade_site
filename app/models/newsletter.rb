@@ -3,6 +3,9 @@ class Newsletter < ActiveRecord::Base
   belongs_to :user
   has_many :trades
 
+  validates :title, presence: true
+  validates :content, presence: true 
+
   def trades_attributes=(trades_attributes)
 
     trades_attributes.each do |i, trade_attributes|
@@ -18,13 +21,13 @@ class Newsletter < ActiveRecord::Base
 
 
 
-        def open_positions?
-          self.trades.open_trades.count > 0
-        end
+  def open_positions?
+    self.trades.open_trades.count > 0
+  end
 
-        def closed_positions?
-          self.trades.closed_trades.count > 0
-        end
+  def closed_positions?
+    self.trades.closed_trades.count > 0
+  end
 
 
 
