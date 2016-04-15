@@ -8,6 +8,13 @@ module ApplicationHelper
     model.created_at.strftime("%H:%M")
   end
 
+  def authenticate?
+    if user_signed_in?
+      if owner?
+      end
+    end
+  end
+
   def owner?
     current_user.id == @newsletter.user_id
   end

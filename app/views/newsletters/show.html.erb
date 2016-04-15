@@ -43,7 +43,7 @@ Date: <%= date_created(@newsletter) %> Time: <%= time_created(@newsletter) %></h
 
 
 
-<% if owner? %>
+<% if authenticate? %>
   <%= render "trade_form" %>
   <%= link_to "Edit Newsletter", edit_user_newsletter_path %>
   <%= link_to "Delete Newsletter", [@user, @newsletter], :method => :delete, :confirm => "Are you sure ?"%>
