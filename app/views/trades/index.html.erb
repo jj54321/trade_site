@@ -1,0 +1,6 @@
+<% @trades.each do |trade| %>
+  <%= trade.instrument %>
+  <%= trade.created_at %>
+<% end %>
+
+<%= render 'form' %>

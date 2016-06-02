@@ -17,6 +17,15 @@ class Trade < ActiveRecord::Base
     self.where(profitable: true)
   end
 
+  def self.fb_trades
+    self.where(instrument: "FB")
+  end
+
+  def self.find_by_instrument(instrument)
+    self.where(instrument: instrument)
+  end
+
+
 
 
 end
