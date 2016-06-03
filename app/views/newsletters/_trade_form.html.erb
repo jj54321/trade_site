@@ -1,7 +1,7 @@
 <%= form_for [@user, @newsletter] do |f| %>
 
 
-<h2>Edit or Add a trade</h2>
+<h2>Edit a trade</h2>
 
   <%= f.fields_for :trades do |trade_builder| %>
     <%= trade_builder.label :instrument %>
@@ -28,6 +28,6 @@
 
 
   <% end %>
-<%= f.submit "Edit or Create Trade" %>
+<%= f.submit "Edit a Trade" %>
 
 <% end %>

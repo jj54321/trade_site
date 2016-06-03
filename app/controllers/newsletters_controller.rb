@@ -3,6 +3,7 @@ class NewslettersController < ApplicationController
   def index
     finder
    @newsletters = @user.newsletters
+   @list_item = ListItem.new
   end
 
   def new
@@ -23,7 +24,7 @@ class NewslettersController < ApplicationController
 
   def show
     finder
-    @newsletter.trades.build(user_id: @user.id, newsletter_id: @newsletter.id)
+    # @newsletter.trades.build(user_id: @user.id, newsletter_id: @newsletter.id)
     flash[:error]= @newsletter.errors.full_messages.to_sentence
     # redirect_to user_newsletters_path(@newsletter)
   end

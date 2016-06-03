@@ -4,11 +4,13 @@ Rails.application.routes.draw do
       resources :newsletters
   end
 
+  resources :list_items, only: [:create]
+
   root to: "visitors#index"
   get 'users/' => 'users#index'
   get '/trades' => 'trades#index'
   get '/trades/:id', to: 'trades#show'
-  post '/instrument' => 'trades#instrument'
+  # post '/instrument' => 'trades#instrument'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

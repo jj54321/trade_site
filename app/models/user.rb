@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
 
   has_many :newsletters
+  has_many :list_items
   has_many :trades, through: :newsletters
 
 

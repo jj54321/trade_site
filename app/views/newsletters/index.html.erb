@@ -12,4 +12,18 @@
   <div id="trades">
 
   </div>
+  <div id="link_hold">
+
+  </div>
 <% end %>
+
+  <h2>To Do List</h2>
+  <%= form_for @list_item, :html => {:id => "list_form"} do |f| %>
+  Item: <%= f.text_field :content %><br />
+  <%= f.submit %>
+<% end %>
+<div class="list">
+  <% @user.list_items.each do |litem| %>
+    <li><%= litem.id %>: <%= litem.content %></li>
+  <% end %>
+</div>
